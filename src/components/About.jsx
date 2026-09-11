@@ -6,7 +6,7 @@ const logo = "https://emsikwkemdavawyfzvdi.supabase.co/storage/v1/object/public/
 
 export default function About() {
   return (
-    <section className="about" data-aos="zoom-in">
+    <section className="about__section" data-aos="zoom-in">
       <div className="about__intro">
         <img src={logo} alt="Morais Energia" className="about__logo" />
 

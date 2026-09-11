@@ -39,6 +39,24 @@ export default function Projects() {
           </Link>
         ))}
       </section>
+
+      <section className="section-about">
+        
+      <div className="about">
+        <p className="about-bold">Energia que</p>
+        <p className="about-script">gera economia</p>
+
+        <p className="desc">
+        Projetos pensados para gerar
+       mais eficiência e economia.
+      </p>
+      <a href="https://api.whatsapp.com/send/?phone=5516997440950&text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+energia+solar.&type=phone_number&app_absent=0" className="services__cta" target="_blank">
+        Faça um orçamento
+      </a>
+      </div>
+
+      
+      </section>
     </main>
   );
 }

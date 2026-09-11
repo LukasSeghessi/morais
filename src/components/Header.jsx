@@ -1,5 +1,6 @@
 import { User } from "lucide-react";
 import "./Header.css";
+import { Link } from "react-router-dom";
 
 // TODO: trocar pelo logo real quando tiver o arquivo
 // import logo from "../assets/logo-sol.svg";
@@ -16,9 +17,9 @@ export default function Header() {
           <a href="#projetos">Projetos</a>
         </nav>
 
-        <button type="button" className="header__user" aria-label="Área do cliente">
+        <Link to="/login" className="header__user" aria-label="Área do cliente">
           <User size={18} />
-        </button>
+        </Link>
       </div>
 
       <a href="#orcamento" className="header__cta">
