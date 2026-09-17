@@ -1,0 +1,137 @@
+.project-detail__container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+@media (min-width: 768px) {
+  .project-detail__container {
+    padding: 56px 48px 96px;
+  }
+}
+
+.project-detail__back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-navy);
+  margin-bottom: 32px;
+}
+
+.project-detail__back-link:hover {
+  color: var(--color-gold);
+}
+
+.project-detail__title {
+  margin: 0 0 4px;
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--color-navy);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  .project-detail__title {
+    font-size: 36px;
+  }
+}
+
+.project-detail__location {
+  margin: 0 0 32px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--color-navy);
+  opacity: 0.7;
+}
+
+.project-detail__main-image {
+  overflow: hidden;
+  border-radius: 16px;
+  margin-bottom: 40px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.project-detail__main-image img {
+  width: 100%;
+  max-height: 480px;
+  object-fit: cover;
+  display: block;
+}
+
+.project-detail__section-title {
+  margin: 0 0 16px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-navy);
+}
+
+.project-detail__description {
+  margin: 0 0 40px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--color-navy);
+  opacity: 0.85;
+}
+
+.project-detail__stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.project-detail__stat-card {
+  background-color: #eaf6fb;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+
+.project-detail__stat-label {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-navy);
+  opacity: 0.7;
+}
+
+.project-detail__stat-value {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--color-gold);
+}
+
+.project-detail__gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .project-detail__gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.project-detail__gallery-item {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.project-detail__gallery-item img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+.project-detail--not-found {
+  text-align: center;
+  padding: 100px 24px;
+}

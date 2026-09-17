@@ -1,0 +1,434 @@
+.admin-page {
+  min-height: 100vh;
+  display: flex;
+  background: #ffffff;
+  color: #003f55;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.admin-sidebar {
+  width: 300px;
+  min-height: 100vh;
+  background: #003f55;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 28px 25px;
+  box-sizing: border-box;
+}
+
+.sidebar-top {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.admin-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.admin-logo img {
+  width: 1620px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.logo-placeholder {
+  width: 100px;
+  height: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  font-size: 70px;
+}
+
+
+.sidebar-top h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* =========================
+   MENU
+========================= */
+
+.admin-menu {
+  width: 100%;
+  margin-top: 68px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+}
+
+.menu-item {
+  width: 100%;
+
+  background: transparent;
+  border: none;
+
+  color: white;
+
+  text-align: left;
+
+  font-size: 19px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  padding: 0;
+}
+
+.menu-item:hover {
+  opacity: 0.8;
+}
+
+.menu-item.active {
+  opacity: 1;
+}
+
+/* =========================
+   LOGOUT
+========================= */
+
+.logout-button {
+  margin-top: auto;
+
+  width: 120px;
+  height: 38px;
+
+  border: none;
+  border-radius: 20px;
+
+  background: #f9ad25;
+  color: #003f55;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.logout-button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+.admin-content {
+  flex: 1;
+  padding: 42px 60px 70px 60px;
+  box-sizing: border-box;
+
+  overflow-x: auto;
+}
+
+/* =========================
+   USUÁRIOS
+========================= */
+
+.usuarios-section {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.usuarios-section h1 {
+  text-align: center;
+
+  margin: 0 0 30px;
+
+  font-size: 32px;
+  font-weight: 800;
+  color: #003f55;
+}
+
+/* =========================
+   TABELA
+========================= */
+
+.usuarios-table-area {
+  width: 100%;
+  overflow: hidden;
+
+  border-radius: 13px;
+}
+
+.usuarios-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.usuarios-table thead {
+  background: #003f55;
+  color: white;
+}
+
+.usuarios-table th {
+  height: 36px;
+
+  padding: 0 18px;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.usuarios-table th:first-child {
+  border-radius: 12px 0 0 12px;
+}
+
+.usuarios-table th:nth-child(4) {
+  border-radius: 0 12px 12px 0;
+}
+
+.usuarios-table tbody {
+  background: #fafafa;
+}
+
+.usuarios-table td {
+  height: 39px;
+  padding: 0 18px;
+
+  color: #050505;
+}
+
+.usuarios-table tbody tr:last-child td:first-child {
+  border-radius: 0 0 0 12px;
+}
+
+.usuarios-table tbody tr:last-child td:nth-child(5) {
+  border-radius: 0 0 12px 0;
+}
+
+/* =========================
+   AÇÕES
+========================= */
+
+.acoes {
+  width: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+}
+
+.acao-button {
+  width: 22px;
+  height: 22px;
+
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  color: #003f55;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.acao-button svg {
+  width: 19px;
+  height: 19px;
+}
+
+.acao-button:hover {
+  transform: scale(1.1);
+}
+
+.excluir {
+  color: #003f55;
+}
+
+/* =========================
+   CADASTRO
+========================= */
+
+.cadastro-section {
+  width: 100%;
+  max-width: 520px;
+
+  margin: 180px auto 0;
+}
+
+.cadastro-section h2 {
+  margin: 0 0 52px;
+
+  font-size: 23px;
+  font-weight: 800;
+
+  color: #003f55;
+}
+
+/* =========================
+   FORMULÁRIO
+========================= */
+
+.cadastro-form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 11px;
+}
+
+.cadastro-form input,
+.cadastro-form select {
+  width: 100%;
+  height: 34px;
+
+  box-sizing: border-box;
+
+  border: none;
+  border-radius: 18px;
+
+  background: #003f55;
+  color: white;
+
+  padding: 0 16px;
+
+  outline: none;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.cadastro-form input::placeholder {
+  color: #316177;
+}
+
+.cadastro-form select {
+  color: #316177;
+  cursor: pointer;
+}
+
+.cadastro-form select option {
+  color: #003f55;
+  background: white;
+}
+
+.cadastro-form button {
+  align-self: flex-end;
+
+  width: 72px;
+  height: 22px;
+
+  margin-top: 9px;
+
+  border: none;
+  border-radius: 15px;
+
+  background: #f9ad25;
+  color: #003f55;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.cadastro-form button:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 900px) {
+  .admin-sidebar {
+    width: 230px;
+  }
+
+  .admin-content {
+    padding: 35px 30px;
+  }
+
+  .cadastro-section {
+    margin-top: 120px;
+  }
+}
+
+@media (max-width: 700px) {
+  .admin-page {
+    flex-direction: column;
+  }
+
+  .admin-sidebar {
+    width: 100%;
+    min-height: auto;
+
+    padding: 20px;
+  }
+
+  .admin-logo {
+    width: 70px;
+    height: 70px;
+  }
+
+  .logo-placeholder {
+    width: 65px;
+    height: 65px;
+    font-size: 45px;
+  }
+
+  .admin-menu {
+    margin-top: 30px;
+    gap: 20px;
+  }
+
+  .menu-item {
+    text-align: center;
+  }
+
+  .logout-button {
+    margin-top: 30px;
+  }
+
+  .admin-content {
+    padding: 35px 20px;
+  }
+
+  .usuarios-section h1 {
+    font-size: 28px;
+  }
+
+  .usuarios-table {
+    min-width: 650px;
+  }
+
+  .cadastro-section {
+    margin-top: 80px;
+  }
+}
