@@ -1,0 +1,38 @@
+:root {
+  --color-navy: #0b2e4f;
+  --color-gold: #f5a623;
+  --color-gold-hover: #e59915;
+  --color-white: #ffffff;
+  --color-text-body: #333333;
+
+  --font-base: "Poppins", "Segoe UI", sans-serif;
+
+  --container-max: 1152px;
+  --section-padding-y: 64px;
+  --section-padding-x: 24px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-base);
+  color: var(--color-text-body);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
