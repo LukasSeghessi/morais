@@ -9,6 +9,7 @@ import FloatingButtons from "./components/FloatingButtons";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
 import Admin from "./pages/Admin";
+import AdminUpdate from "./pages/AdminUpdate";
 import AdminRoute from "./routes/AdminRoutes";
 import About from "./components/About";
 
@@ -36,6 +37,15 @@ function AppContent() {
           element={
             <AdminRoute>
               <Admin />
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="/admin/usuarios"
+          element={
+            <AdminRoute>
+              <AdminUpdate />
             </AdminRoute>
           }
         />

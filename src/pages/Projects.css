@@ -106,22 +106,22 @@
   transition: background-color 0.2s ease;
 }
 
-.about {
+.about-2 {
   margin-bottom: 48px;
   margin-right: 0;
 }
 
-.about-bold {
+.about-bold-2 {
   margin: 0;
-  margin-left: 0;
+  margin-left: 300px;
   font-size: clamp(30px, 8vw, 35px);
   font-weight: 800;
   color: var(--color-gold);
 }
 
-.about-script {
+.about-script-2 {
   margin: 0;
-  margin-left: 0;
+  margin-left: 275px;
   font-family: "Playfair Display", "Georgia", serif;
   font-style: italic;
   font-weight: 400;
@@ -154,6 +154,26 @@
   color: var(--color-navy);
   box-shadow: 0px 0px 49px -16px #000000;
   transition: background-color 0.2s ease;
-  margin-left: 0;
- 
+  margin-left: 650px;
+}
+
+@media (max-width: 767px) {
+  .about-2 {
+    width: 100%;
+    text-align: center;
+  }
+
+  .about-bold-2,
+  .about-script-2 {
+    margin-left: 0;
+  }
+
+  .desc {
+    width: min(100%, 550px);
+    padding: 0 24px;
+  }
+
+  .services__cta {
+    margin-left: 0;
+  }
 }

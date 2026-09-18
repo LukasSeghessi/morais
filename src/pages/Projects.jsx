@@ -42,9 +42,9 @@ export default function Projects() {
 
       <section className="section-about">
         
-      <div className="about">
-        <p className="about-bold">Energia que</p>
-        <p className="about-script">gera economia</p>
+      <div className="about-2">
+        <p className="about-bold-2">Energia que</p>
+        <p className="about-script-2">gera economia</p>
 
         <p className="desc">
         Projetos pensados para gerar

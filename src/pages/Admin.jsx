@@ -163,6 +163,13 @@ export default function Admin() {
 
           <button
             className="menu-item"
+            onClick={() => navigate("/admin/usuarios")}
+          >
+            Atualizar Usuários
+          </button>
+
+          <button
+            className="menu-item"
             onClick={() => alert("Área de produtos em desenvolvimento.")}
           >
             Produtos Cadastrados
@@ -214,23 +221,6 @@ export default function Admin() {
                       <td>{usuario.tipo}</td>
 
                       <td className="acoes">
-
-                        {/* EDITAR */}
-                        <button
-                          className="acao-button editar"
-                          onClick={() => handleEditarUsuario(usuario.id)}
-                          title="Editar"
-                        >
-                          <svg
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1.8"
-                          >
-                            <path d="M12 20h9" />
-                            <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
-                          </svg>
-                        </button>
 
                         {/* EXCLUIR */}
                         <button
