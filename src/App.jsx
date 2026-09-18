@@ -16,6 +16,7 @@ function AppContent() {
   const location = useLocation();
 
   const isAdminPage = location.pathname.startsWith("/admin");
+  const isLoginPage = location.pathname.startsWith("/login");
 
   return (
     <>
@@ -40,9 +41,10 @@ function AppContent() {
         />
       </Routes>
 
-      {!isAdminPage && <Footer />}
+      {!isAdminPage && !isLoginPage && <Footer />}
 
-      {!isAdminPage && <FloatingButtons />}
+      {!isAdminPage && !isLoginPage && <FloatingButtons />}
+
     </>
   );
 }
