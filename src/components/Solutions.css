@@ -24,7 +24,7 @@
 .solutions__image-frame img {
   width: 100%;
   object-fit: cover;
-  height: 390px;
+  height: min(390px, 78vw);
   
 }
 

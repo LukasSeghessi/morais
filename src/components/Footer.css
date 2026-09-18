@@ -21,10 +21,14 @@
 }
 
 .footer__logo {
+  display: block;
   height: auto;
-  width: 480px;
-  margin-top: -75px;
-  margin-left: -75px;
+  width: min(420px, 100%);
+  margin: 0 auto 16px;
+}
+
+.footer__brand {
+  text-align: center;
 }
 
 .footer__tagline {
@@ -33,7 +37,7 @@
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.75);
   text-align: center;
-  margin-left: 25px
+  margin: 0 auto;
 }
 
 .footer__column {
