@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { PROJECTS } from "../data/projects";
@@ -7,8 +8,25 @@ export default function ProjectDetail() {
   // useParams le o valor que esta na URL. Se a rota e "/projetos/:id"
   // e o usuario acessa "/projetos/2", entao id vai ser a string "2".
   const { id } = useParams();
+  const [focusedPhoto, setFocusedPhoto] = useState(null);
 
   const project = PROJECTS.find((item) => item.id === id);
+
+  useEffect(() => {
+    if (!focusedPhoto) return undefined;
+
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setFocusedPhoto(null);
+    };
+
+    document.addEventListener("keydown", closeOnEscape);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", closeOnEscape);
+      document.body.style.overflow = "";
+    };
+  }, [focusedPhoto]);
 
   // Se ninguem encontrar esse id (ex: usuario digitou uma URL errada),
   // mostra uma mensagem simples em vez de quebrar a pagina.
@@ -58,19 +76,54 @@ export default function ProjectDetail() {
         {project.gallery && project.gallery.length > 0 && (
           <>
             <h2 className="project-detail__section-title">Mais fotos</h2>
-            <div className="project-detail__gallery">
+            <div
+              className={`project-detail__gallery project-detail__gallery--${Math.min(
+                project.gallery.length,
+                3,
+              )}`}
+            >
               {project.gallery.map((photo, index) => (
-                <div key={index} className="project-detail__gallery-item">
+                <button
+                  key={index}
+                  type="button"
+                  className="project-detail__gallery-item"
+                  onClick={() => setFocusedPhoto(photo)}
+                  aria-label={`Ampliar foto ${index + 1} de ${project.title}`}
+                >
                   <img
                     src={photo}
                     alt={`${project.title} - foto ${index + 1}`}
                   />
-                </div>
+                </button>
               ))}
             </div>
           </>
         )}
       </div>
+
+      {focusedPhoto && (
+        <div
+          className="project-detail__lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Foto ampliada"
+          onClick={() => setFocusedPhoto(null)}
+        >
+          <button
+            type="button"
+            className="project-detail__lightbox-close"
+            aria-label="Fechar foto ampliada"
+            onClick={() => setFocusedPhoto(null)}
+          >
+            ×
+          </button>
+          <img
+            src={focusedPhoto}
+            alt={`${project.title} - foto ampliada`}
+            onClick={(event) => event.stopPropagation()}
+          />
+        </div>
+      )}
     </main>
   );
 }

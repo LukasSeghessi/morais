@@ -109,19 +109,43 @@
 
 .project-detail__gallery {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 16px;
+  width: 100%;
 }
 
 @media (min-width: 640px) {
   .project-detail__gallery {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project-detail__gallery--2 {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 960px) {
+  .project-detail__gallery--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .project-detail__gallery--2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 .project-detail__gallery-item {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  cursor: zoom-in;
   overflow: hidden;
   border-radius: 12px;
+  background: #eaf6fb;
+  box-shadow: 0 6px 18px rgba(11, 46, 79, 0.1);
 }
 
 .project-detail__gallery-item img {
@@ -129,6 +153,72 @@
   height: 160px;
   object-fit: cover;
   display: block;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.project-detail__gallery-item:hover img,
+.project-detail__gallery-item:focus-visible img {
+  transform: scale(1.05);
+  filter: brightness(0.88);
+}
+
+.project-detail__gallery-item:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 4px;
+}
+
+.project-detail__lightbox {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 56px 24px 24px;
+  background: rgba(5, 20, 34, 0.9);
+  cursor: zoom-out;
+  animation: project-lightbox-in 0.2s ease-out;
+}
+
+.project-detail__lightbox img {
+  display: block;
+  width: auto;
+  max-width: min(100%, 1100px);
+  max-height: calc(100vh - 80px);
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  cursor: default;
+}
+
+.project-detail__lightbox-close {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: rgba(11, 46, 79, 0.85);
+  color: #fff;
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.project-detail__lightbox-close:hover,
+.project-detail__lightbox-close:focus-visible {
+  background: var(--color-gold);
+  color: var(--color-navy);
+}
+
+@keyframes project-lightbox-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .project-detail--not-found {

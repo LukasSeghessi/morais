@@ -58,45 +58,58 @@
 
 .projects-page__card {
   display: block;
-  background-color: #ffffff;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  width: 100%;
   color: inherit;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  transition: transform 0.2s ease;
 }
 
 .projects-page__card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
 }
 
-.projects-page__image-frame img {
+.projects-page__photo-box {
+  overflow: hidden;
+  border-radius: 12px;
+  background: #eef3f8;
+  box-shadow: 0 0 49px -16px #000000;
+  margin-bottom: 16px;
+}
+
+.projects-page__photo-box img {
   width: 100%;
   height: 220px;
   object-fit: cover;
+  display: block;
+  transition: transform 0.2s ease;
 }
 
-.projects-page__card-title {
-  margin: 20px 20px 8px;
-  font-size: 18px;
-  font-weight: 700;
+.projects-page__card:hover .projects-page__photo-box img {
+  transform: scale(1.02);
+}
+
+.projects-page__bottom-box {
+  padding: 0 4px;
+}
+
+.projects-page__bottom-box h3 {
+  margin: 0;
   color: var(--color-navy);
+  text-align: left;
+  font-size: 20px;
+  line-height: 1.25;
+  font-weight: 600;
 }
 
 .projects-page__card-description {
-  margin: 0 20px 20px;
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--color-navy);
-  opacity: 0.75;
+  display: none;
 }
 .voltar {
   display: inline-flex;
   align-items: center;
   gap: 12px;
   padding: 14px 28px;
-
+  color: inherit;
   border-radius: 999px;
   color: var(--color-navy);
   font-size: 14px;
@@ -130,11 +143,10 @@
 }
 .desc{
   max-width: 620px;
-  margin: 0 auto 48px;
-  margin-top: 4%;
+  margin: 0 auto 35px;
+  margin-top: 2%;
   width: min(100%, 550px);
   text-align: center;
-  
   font-size: 16px;
   line-height: 1.7;
   color: var(--color-text-body);
@@ -176,4 +188,97 @@
   .services__cta {
     margin-left: 0;
   }
+}
+
+/* =========================================
+   CARD COM EFEITO 3D
+   ========================================= */
+
+.project-card-flip {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  perspective: 1000px;
+}
+
+.project-card-front,
+.project-card-back {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 18px;
+  overflow: hidden;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  transition: transform 0.7s ease;
+}
+
+/* FRENTE */
+
+.project-card-front {
+  transform: rotateY(0deg);
+}
+
+.project-card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* VERSO */
+
+.project-card-back {
+  background: #0b2e4f;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  padding: 30px;
+
+  transform: rotateY(180deg);
+}
+
+.project-card-back__label {
+  color: #f5a623;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 12px;
+}
+
+.project-card-back h3 {
+  color: #ffffff;
+
+  font-size: 28px;
+
+  margin: 0 0 25px;
+}
+
+.project-card-back__link {
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* HOVER */
+
+.project-card-flip:hover .project-card-front {
+  transform: rotateY(-180deg);
+}
+
+.project-card-flip:hover .project-card-back {
+  transform: rotateY(0deg);
 }

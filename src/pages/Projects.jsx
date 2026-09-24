@@ -29,13 +29,13 @@ export default function Projects() {
             data-aos="fade-up"
             data-aos-delay={index * 100}
           >
-            <div className="projects-page__image-frame">
+            <div className="projects-page__photo-box">
               <img src={project.mainImage} alt={project.title} />
             </div>
-            <h3 className="projects-page__card-title">{project.title}</h3>
-            <p className="projects-page__card-description">
-              {project.description}
-            </p>
+
+            <div className="projects-page__bottom-box">
+              <h3>{project.title}</h3>
+            </div>
           </Link>
         ))}
       </section>
