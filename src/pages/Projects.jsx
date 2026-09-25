@@ -2,14 +2,15 @@ import { Link } from "react-router-dom";
 import { PROJECTS } from "../data/projects";
 import { ArrowLeft } from "lucide-react";
 import "./Projects.css";
+const img = "https://emsikwkemdavawyfzvdi.supabase.co/storage/v1/object/public/img/telh-1.png";
 
 export default function Projects() {
   return (
     <main className="projects-page">
       <Link to="/" className="voltar">
-            <ArrowLeft size={20} />
-            Voltar ao Início
-          </Link>
+        <ArrowLeft size={20} />
+        Voltar ao Início
+      </Link>
       <section className="projects-page__hero">
         <h1 className="projects-page__title">Projetos</h1>
         <p className="projects-page__subtitle">
@@ -18,7 +19,7 @@ export default function Projects() {
         <p className="projects-page__description">
           Conheça alguns dos projetos que já realizamos para nossos clientes.
         </p>
-</section>
+      </section>
 
       <section className="projects-page__grid">
         {PROJECTS.map((project, index) => (
@@ -41,21 +42,26 @@ export default function Projects() {
       </section>
 
       <section className="section-about">
-        
-      <div className="about-2">
-        <p className="about-bold-2">Energia que</p>
-        <p className="about-script-2">gera economia</p>
+        <div className="about-2">
+          <p className="about-bold-2">Energia que</p>
+          <p className="about-script-2">gera economia</p>
 
-        <p className="desc">
-        Projetos pensados para gerar
-       mais eficiência e economia.
-      </p>
-      <a href="https://api.whatsapp.com/send/?phone=5516997440950&text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+energia+solar.&type=phone_number&app_absent=0" className="services__cta" target="_blank">
-        Faça um orçamento
-      </a>
-      </div>
+          <p className="desc">
+            Projetos pensados para gerar mais eficiência e economia.
+          </p>
+          <a
+            href="https://api.whatsapp.com/send/?phone=5516997440950&text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+energia+solar.&type=phone_number&app_absent=0"
+            className="services__cta"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Faça um orçamento
+          </a>
+        </div>
 
-      
+        <div className="about-2__photo-box">
+          <img src={img} alt={PROJECTS[0].title} />
+        </div>
       </section>
     </main>
   );

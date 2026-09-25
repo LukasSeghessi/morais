@@ -119,14 +119,30 @@
   transition: background-color 0.2s ease;
 }
 
-.about-2 {
+.section-about {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: center;
   margin-bottom: 48px;
+}
+
+@media (min-width: 768px) {
+  .section-about {
+    grid-template-columns: 1fr 1fr;
+    max-width: var(--container-max);
+    margin: 0 auto 48px;
+    padding: 0 48px;
+  }
+}
+
+.about-2 {
+  margin-bottom: 0;
   margin-right: 0;
 }
 
 .about-bold-2 {
   margin: 0;
-  margin-left: 300px;
   font-size: clamp(30px, 8vw, 35px);
   font-weight: 800;
   color: var(--color-gold);
@@ -134,29 +150,35 @@
 
 .about-script-2 {
   margin: 0;
-  margin-left: 275px;
   font-family: "Playfair Display", "Georgia", serif;
   font-style: italic;
   font-weight: 400;
   font-size: clamp(32px, 9vw, 40px);
   color: var(--color-navy);
 }
-.desc{
-  max-width: 620px;
-  margin: 0 auto 35px;
-  margin-top: 2%;
-  width: min(100%, 550px);
-  text-align: center;
+
+.about-2__photo-box {
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 0 49px -16px #000000;
+}
+
+.about-2__photo-box img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+.desc {
+  max-width: 480px;
+  margin: 20px 0 24px;
+  text-align: left;
   font-size: 16px;
   line-height: 1.7;
   color: var(--color-text-body);
 }
-.section-about{
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 32px;
-  margin-bottom: 48px;
-}
+
 .services__cta {
   display: inline-block;
   border-radius: 6px;
@@ -165,31 +187,36 @@
   font-weight: 700;
   color: var(--color-navy);
   box-shadow: 0px 0px 49px -16px #000000;
+  padding: 12px 28px;
+  margin-left: 0;
   transition: background-color 0.2s ease;
-  margin-left: 650px;
 }
-
 @media (max-width: 767px) {
   .about-2 {
     width: 100%;
     text-align: center;
   }
 
-  .about-bold-2,
-  .about-script-2 {
-    margin-left: 0;
-  }
-
   .desc {
     width: min(100%, 550px);
+    margin: 20px auto 24px;
     padding: 0 24px;
+    text-align: center;
   }
 
   .services__cta {
     margin-left: 0;
   }
-}
 
+  .about-2__photo-box {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .about-2__photo-box img {
+    height: 200px;
+  }
+}
 /* =========================================
    CARD COM EFEITO 3D
    ========================================= */
