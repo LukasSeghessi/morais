@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
-
 import "./Login.css";
 
 const logo =
@@ -69,7 +68,6 @@ export default function Login() {
         );
 
         await supabase.auth.signOut();
-
         return;
       }
 
@@ -162,6 +160,14 @@ export default function Login() {
   }
 
   // =========================
+  // VOLTAR PARA O INÍCIO
+  // =========================
+
+  function voltarInicio() {
+    navigate("/");
+  }
+
+  // =========================
   // TELA
   // =========================
 
@@ -178,7 +184,6 @@ export default function Login() {
         />
 
         <div className="login-page__fields">
-
           {modoCadastro && (
             <>
               <input
@@ -249,7 +254,6 @@ export default function Login() {
 
         <div className="login-page__switch">
           {modoCadastro ? (
-            <>
             <section className="section__criar">
               <span>Já possui uma conta?</span>
 
@@ -260,10 +264,8 @@ export default function Login() {
               >
                 Voltar para login
               </button>
-              </section>
-            </>
+            </section>
           ) : (
-            <>
             <section className="section__criar">
               <span>Não possui uma conta?</span>
 
@@ -274,10 +276,18 @@ export default function Login() {
               >
                 Criar conta
               </button>
-              </section>
-            </>
+            </section>
           )}
         </div>
+
+        {/* VOLTAR PARA O INÍCIO */}
+        <button
+          type="button"
+          className="login-page__back"
+          onClick={voltarInicio}
+        >
+          ← Voltar ao início
+        </button>
       </form>
     </main>
   );

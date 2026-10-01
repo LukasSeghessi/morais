@@ -1,6 +1,6 @@
 import { User } from "lucide-react";
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 
@@ -9,6 +9,8 @@ const logo =
 
 export default function Header() {
   const [usuario, setUsuario] = useState(null);
+
+  const navigate = useNavigate();
 
   async function carregarUsuario(user) {
     if (!user) {
@@ -34,7 +36,7 @@ export default function Header() {
   }
 
   useEffect(() => {
-    // Verifica se já existe alguém logado
+    // Verifica se já existe um usuário logado
     supabase.auth.getUser().then(({ data: { user } }) => {
       carregarUsuario(user);
     });
@@ -57,32 +59,59 @@ export default function Header() {
     };
   }, []);
 
+  // Função para sair da conta
+  const handleLogout = async () => {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      console.error("Erro ao sair:", error);
+      return;
+    }
+
+    navigate("/login");
+  };
+
   return (
     <header className="header">
       <div className="header__left">
 
+        {/* LOGO */}
         <img
           src={logo}
           alt="Morais Energia"
           className="header__logo"
         />
 
+        {/* MENU */}
         <nav className="header__nav">
           <a href="#Hero">Sobre</a>
-          <Link to="/projetos">Projetos</Link>
+
+          <Link to="/projetos">
+            Projetos
+          </Link>
         </nav>
 
+        {/* USUÁRIO */}
         {usuario ? (
-          <Link
-            to="/perfil"
-            className="header__user header__user--logged"
-          >
-            <User size={18} />
+          <div className="header__user-area">
 
-            <span>
-              {usuario.nome}
-            </span>
-          </Link>
+            <div className="header__user header__user--logged">
+              <User size={18} />
+
+              <span>
+                {usuario.nome}
+              </span>
+            </div>
+
+            <button
+              type="button"
+              className="header__logout"
+              onClick={handleLogout}
+            >
+              Sair
+            </button>
+
+          </div>
         ) : (
           <Link
             to="/login"
@@ -95,7 +124,11 @@ export default function Header() {
 
       </div>
 
-      <a href="#orcamento" className="header__cta">
+      {/* BOTÃO ORÇAMENTO */}
+      <a
+        href="#orcamento"
+        className="header__cta"
+      >
         Faça um orçamento
       </a>
     </header>
