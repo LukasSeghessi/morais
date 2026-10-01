@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { PROJECTS } from "../data/projects";
 import { ArrowLeft } from "lucide-react";
 import "./Projects.css";
-const img = "https://emsikwkemdavawyfzvdi.supabase.co/storage/v1/object/public/img/telh-1.png";
+const img = "https://emsikwkemdavawyfzvdi.supabase.co/storage/v1/object/public/img/telh-2.png";
 
 export default function Projects() {
   return (
