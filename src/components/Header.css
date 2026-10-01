@@ -294,14 +294,23 @@
     gap: 6px;
 
     padding: 12px 8px;
+    width: calc(100% - 16px);
+    margin: 0 auto;
+  }
+
+  .header__cta {
+    display: none;
   }
 
   .header__left {
-    height: 76px;
+    height: 84px;
+    width: 100%;
+    flex: 1 1 auto;
 
     padding-right: 12px;
 
     border-radius: 22px;
+    justify-content: center;
   }
 
   /* LOGO
@@ -326,7 +335,7 @@
     display: flex;
     align-items: center;
 
-    gap: 10px;
+    gap: 22px;
 
     margin-left: 0;
     margin-right: 12px;
@@ -342,29 +351,34 @@
     white-space: nowrap;
   }
 
-  /* USUÁRIO NO MOBILE
-     Nome em cima, "Sair" embaixo, mesma largura. */
-
   .header__left .header__user-area {
-    flex-direction: column;
-    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     justify-content: center;
 
-    gap: 5px;
+    gap: 16px;
 
     margin-left: 0;
   }
 
-  /* Deslogado: só o ícone do boneco */
   .header__left .header__user {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.15);
   }
 
-  /* Logado: ícone pequeno + nome */
+  .header__left a.header__user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+
   .header__left .header__user--logged {
     width: auto;
-    height: 28px;
+    height: 26px;
 
     padding: 0 10px;
 
@@ -379,16 +393,14 @@
   .header__left .header__user--logged span {
     display: block;
 
-    max-width: 48px;
+    max-width: 44px;
 
-    font-size: 12px;
+    font-size: 11px;
   }
 
-  /* Sair: contorno fino, bem diferente do chip do nome */
   .header__logout {
     display: inline-flex;
 
-    width: 100%;
     height: 24px;
 
     padding: 0 10px;
@@ -397,23 +409,7 @@
 
     background-color: transparent;
 
-    font-size: 11px;
+    font-size: 10px;
   }
 
-  /* ORÇAMENTO */
-
-  .header__cta {
-    display: block;
-
-    flex: 0 0 84px;
-
-    padding: 12px 6px;
-
-    font-size: 11px;
-    line-height: 1.2;
-
-    text-align: center;
-
-    border-radius: 10px;
-  }
 }
