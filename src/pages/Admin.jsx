@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
 import "./Admin.css";
 
-const logo ="https://emsikwkemdavawyfzvdi.supabase.co/storage/v1/object/public/img/logo_branco_2.png";
+const logo =
+  "https://emsikwkemdavawyfzvdi.supabase.co/storage/v1/object/public/img/logo_branco_2.png";
 
 export default function Admin() {
   const navigate = useNavigate();
@@ -15,9 +16,8 @@ export default function Admin() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [telefone, setTelefone] = useState("");
-  const [tipo, setTipo] = useState("Comum");
+  const [tipo, setTipo] = useState("user");
 
-  // Busca os usuarios do Supabase assim que a pagina carrega.
   useEffect(() => {
     carregarUsuarios();
   }, []);
@@ -34,7 +34,7 @@ export default function Admin() {
       console.error("Erro ao buscar usuarios:", error.message);
       alert("Erro ao carregar usuários.");
     } else {
-      setUsuarios(data);
+      setUsuarios(data || []);
     }
 
     setCarregando(false);
@@ -52,6 +52,10 @@ export default function Admin() {
     navigate("/login");
   }
 
+  // =========================================================
+  // CRIAR USUÁRIO
+  // =========================================================
+
   async function handleCriarUsuario(e) {
     e.preventDefault();
 
@@ -60,23 +64,82 @@ export default function Admin() {
       return;
     }
 
-    // Chama a Edge Function, que roda no servidor do Supabase.
-    // Ela cria o login (Auth) e a linha na tabela "usuarios" de uma vez.
-    const { data, error } = await supabase.functions.invoke("criar-usuario", {
-      body: { nome, email, senha, telefone, tipo },
-    });
+    console.log("=================================");
+    console.log("CRIANDO USUÁRIO");
+    console.log("Nome:", nome);
+    console.log("Email:", email);
+    console.log("Telefone:", telefone);
+    console.log("TIPO ENVIADO:", tipo);
+    console.log("=================================");
+
+    const { data, error } = await supabase.functions.invoke(
+      "criar-usuario",
+      {
+        body: {
+          nome,
+          email,
+          senha,
+          telefone,
+          tipo,
+        },
+      }
+    );
 
     if (error) {
-      console.error("Erro ao criar usuario:", error.message);
-      alert("Não foi possível criar o usuário.");
+      console.error(
+        "ERRO COMPLETO DA EDGE FUNCTION:",
+        error
+      );
+
+      let mensagem = error.message;
+
+      try {
+        if (error.context) {
+          const resposta = await error.context.json();
+
+          console.error(
+            "RESPOSTA DA EDGE FUNCTION:",
+            resposta
+          );
+
+          if (resposta?.error) {
+            mensagem = resposta.error;
+          }
+
+          if (resposta?.details) {
+            mensagem += `\n\nDetalhes: ${resposta.details}`;
+          }
+
+          if (resposta?.hint) {
+            mensagem += `\n\nDica: ${resposta.hint}`;
+          }
+
+          if (resposta?.code) {
+            mensagem += `\n\nCódigo: ${resposta.code}`;
+          }
+        }
+      } catch (erroLeitura) {
+        console.error(
+          "Não foi possível ler a resposta da Edge Function:",
+          erroLeitura
+        );
+      }
+
+      alert(`Erro ao criar usuário:\n\n${mensagem}`);
       return;
     }
 
     if (data?.error) {
-      console.error("Erro retornado pela function:", data.error);
+      console.error(
+        "Erro retornado pela function:",
+        data.error
+      );
+
       alert(data.error);
       return;
     }
+
+    console.log("USUÁRIO CRIADO:", data.usuario);
 
     setUsuarios((prev) => [...prev, data.usuario]);
 
@@ -84,120 +147,213 @@ export default function Admin() {
     setEmail("");
     setSenha("");
     setTelefone("");
-    setTipo("Comum");
+    setTipo("user");
 
     alert("Usuário criado com sucesso!");
-  }
 
-  async function handleEditarUsuario(id) {
-    const usuario = usuarios.find((item) => item.id === id);
-
-    if (!usuario) return;
-
-    const novoNome = prompt("Digite o novo nome:", usuario.nome);
-
-    if (!novoNome) return;
-
-    const { error } = await supabase
-      .from("usuarios")
-      .update({ nome: novoNome })
-      .eq("id", id);
-
-    if (error) {
-      console.error("Erro ao editar usuario:", error.message);
-      alert("Não foi possível editar o usuário.");
-      return;
-    }
-
-    setUsuarios((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, nome: novoNome } : item
-      )
+    console.log(
+      "Usuário criado com tipo:",
+      data.usuario?.tipo
     );
   }
 
+  // =========================================================
+  // EXCLUIR USUÁRIO
+  // =========================================================
+
   async function handleExcluirUsuario(id) {
-    const usuario = usuarios.find((item) => item.id === id);
+    const usuario = usuarios.find(
+      (item) => item.id === id
+    );
 
     if (!usuario) return;
 
     const confirmar = window.confirm(
-      `Deseja realmente excluir o usuário "${usuario.nome}"?`
+      `Deseja realmente excluir o usuário "${usuario.nome}"?\n\n` +
+        "Esta ação removerá a conta de login e o cadastro do usuário."
     );
 
     if (!confirmar) return;
 
-    const { error } = await supabase
-      .from("usuarios")
-      .delete()
-      .eq("id", id);
+    try {
+      console.log("=================================");
+      console.log("EXCLUINDO USUÁRIO");
+      console.log("ID:", usuario.id);
+      console.log("Nome:", usuario.nome);
+      console.log("Email:", usuario.email);
+      console.log(
+        "Auth ID:",
+        usuario.auth_user_id
+      );
+      console.log("=================================");
 
-    if (error) {
-      console.error("Erro ao excluir usuario:", error.message);
-      alert("Não foi possível excluir o usuário.");
-      return;
+      const { data, error } =
+        await supabase.functions.invoke(
+          "excluir-usuario",
+          {
+            body: {
+              id: usuario.id,
+            },
+          }
+        );
+
+      console.log(
+        "RESPOSTA DA EXCLUSÃO:",
+        {
+          data,
+          error,
+        }
+      );
+
+      if (error) {
+        console.error(
+          "Erro completo ao excluir usuário:",
+          error
+        );
+
+        let mensagem =
+          error.message ||
+          "Erro desconhecido.";
+
+        try {
+          if (error.context) {
+            const resposta =
+              await error.context.json();
+
+            console.error(
+              "RESPOSTA DA EDGE FUNCTION:",
+              resposta
+            );
+
+            if (resposta?.error) {
+              mensagem = resposta.error;
+            }
+
+            if (resposta?.details) {
+              mensagem += `\n\nDetalhes: ${resposta.details}`;
+            }
+
+            if (resposta?.hint) {
+              mensagem += `\n\nDica: ${resposta.hint}`;
+            }
+          }
+        } catch (erroLeitura) {
+          console.error(
+            "Não foi possível ler a resposta:",
+            erroLeitura
+          );
+        }
+
+        alert(
+          `Erro ao excluir usuário:\n\n${mensagem}`
+        );
+
+        return;
+      }
+
+      if (data?.error) {
+        console.error(
+          "Erro retornado pela function:",
+          data.error
+        );
+
+        alert(data.error);
+        return;
+      }
+
+      // Remove o usuário da lista na tela
+      setUsuarios((prev) =>
+        prev.filter(
+          (item) => item.id !== usuario.id
+        )
+      );
+
+      alert("Usuário excluído com sucesso!");
+
+      console.log(
+        "USUÁRIO EXCLUÍDO:",
+        data?.usuario
+      );
+    } catch (erro) {
+      console.error(
+        "Erro inesperado ao excluir usuário:",
+        erro
+      );
+
+      alert(
+        "Ocorreu um erro inesperado ao excluir o usuário."
+      );
     }
-
-    setUsuarios((prev) => prev.filter((item) => item.id !== id));
   }
 
   return (
     <div className="admin-page">
+      {/* =====================================================
+          SIDEBAR
+      ====================================================== */}
 
-      {/* SIDEBAR */}
       <aside className="admin-sidebar">
-
         <div className="sidebar-top">
           <div className="admin-logo">
-  <img src={logo} alt="Morais Energia" />
-</div>
+            <img
+              src={logo}
+              alt="Morais Energia"
+            />
+          </div>
 
           <h2>Painel Administrativo</h2>
         </div>
 
-        <nav className="admin-menu">
+    <nav className="admin-menu">
+  <button className="menu-item active">
+    Usuários Cadastrados
+  </button>
 
-          <button className="menu-item active">
-            Usuários Cadastrados
-          </button>
+  <button
+    className="menu-item"
+    onClick={() =>
+      navigate("/admin/usuarios")
+    }
+  >
+    Atualizar Usuários
+  </button>
 
-          <button
-            className="menu-item"
-            onClick={() => navigate("/admin/usuarios")}
-          >
-            Atualizar Usuários
-          </button>
+  <button
+    className="menu-item"
+    onClick={() =>
+      navigate("/admin/analise-solar")
+    }
+  >
+    Análise Solar
+  </button>
 
-          <button
-            className="menu-item"
-            onClick={() => alert("Área de produtos em desenvolvimento.")}
-          >
-            Produtos Cadastrados
-          </button>
+</nav>
 
-        </nav>
-
-        <button className="logout-button" onClick={handleLogout}>
+        <button
+          className="logout-button"
+          onClick={handleLogout}
+        >
           Sair
         </button>
-
       </aside>
 
-      {/* CONTEÚDO */}
+      {/* =====================================================
+          CONTEÚDO
+      ====================================================== */}
+
       <main className="admin-content">
+        {/* ===================================================
+            USUÁRIOS
+        ==================================================== */}
 
-        {/* USUÁRIOS */}
         <section className="usuarios-section">
-
           <h1>Usuários</h1>
 
           <div className="usuarios-table-area">
-
             {carregando ? (
               <p>Carregando usuários...</p>
             ) : (
               <table className="usuarios-table">
-
                 <thead>
                   <tr>
                     <th>ID</th>
@@ -211,22 +367,43 @@ export default function Admin() {
                 <tbody>
                   {usuarios.map((usuario) => (
                     <tr key={usuario.id}>
-
                       <td>{usuario.id}</td>
 
-                      <td>{usuario.nome}</td>
+                      <td>
+                        {usuario.nome}
+                      </td>
 
-                      <td>{usuario.telefone}</td>
+                      <td>
+                        {usuario.telefone}
+                      </td>
 
-                      <td>{usuario.tipo}</td>
+                      <td>
+                        {usuario.tipo}
+                      </td>
 
                       <td className="acoes">
+                        {/* EDITAR */}
+
+                        <button
+                          className="acao-button editar"
+                          onClick={() =>
+                            navigate(
+                              "/admin/usuarios"
+                            )
+                          }
+                          title="Editar"
+                        >
+                          ✎
+                        </button>
 
                         {/* EXCLUIR */}
+
                         <button
                           className="acao-button excluir"
                           onClick={() =>
-                            handleExcluirUsuario(usuario.id)
+                            handleExcluirUsuario(
+                              usuario.id
+                            )
                           }
                           title="Excluir"
                         >
@@ -237,82 +414,93 @@ export default function Admin() {
                             strokeWidth="1.8"
                           >
                             <path d="M3 6h18" />
+
                             <path d="M8 6V4h8v2" />
+
                             <path d="M19 6l-1 15H6L5 6" />
+
                             <path d="M10 11v6" />
+
                             <path d="M14 11v6" />
                           </svg>
                         </button>
-
                       </td>
-
                     </tr>
                   ))}
                 </tbody>
-
               </table>
             )}
-
           </div>
-
         </section>
 
-        {/* CADASTRO */}
-        <section className="cadastro-section">
+        {/* ===================================================
+            CADASTRAR USUÁRIO
+        ==================================================== */}
 
+        <section className="cadastro-section">
           <h2>Cadastrar Usuário</h2>
 
           <form
             className="cadastro-form"
             onSubmit={handleCriarUsuario}
           >
-
             <input
               type="text"
               placeholder="Nome"
               value={nome}
-              onChange={(e) => setNome(e.target.value)}
+              onChange={(e) =>
+                setNome(e.target.value)
+              }
             />
 
             <input
               type="email"
               placeholder="E-mail"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) =>
+                setEmail(e.target.value)
+              }
             />
 
             <input
               type="password"
               placeholder="Senha"
               value={senha}
-              onChange={(e) => setSenha(e.target.value)}
+              onChange={(e) =>
+                setSenha(e.target.value)
+              }
             />
 
             <input
               type="text"
               placeholder="Telefone"
               value={telefone}
-              onChange={(e) => setTelefone(e.target.value)}
+              onChange={(e) =>
+                setTelefone(e.target.value)
+              }
             />
 
             <select
               value={tipo}
-              onChange={(e) => setTipo(e.target.value)}
+              onChange={(e) =>
+                setTipo(e.target.value)
+              }
             >
-              <option value="user">Comum</option>
-              <option value="admin">Admin</option>
+              <option value="user">
+                Comum
+              </option>
+
+              <option value="admin">
+                Admin
+              </option>
             </select>
 
             <button type="submit">
               Criar
             </button>
-
           </form>
-
         </section>
-
       </main>
-
     </div>
   );
 }

@@ -12,6 +12,7 @@ import Admin from "./pages/Admin";
 import AdminUpdate from "./pages/AdminUpdate";
 import AdminRoute from "./routes/AdminRoutes";
 import About from "./components/About";
+import AdminSolar from "./pages/AdminSolar";
 
 function AppContent() {
   const location = useLocation();
@@ -49,6 +50,15 @@ function AppContent() {
             </AdminRoute>
           }
         />
+
+        <Route
+          path="/admin/analise-solar"
+  element={
+    <AdminRoute>
+      <AdminSolar />
+    </AdminRoute>
+  }
+/>
       </Routes>
 
       {!isAdminPage && !isLoginPage && <Footer />}
