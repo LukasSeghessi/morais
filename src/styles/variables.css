@@ -22,6 +22,10 @@ body {
   color: var(--color-text-body);
 }
 
+#root {
+  overflow-x: clip;
+}
+
 img {
   display: block;
   max-width: 100%;

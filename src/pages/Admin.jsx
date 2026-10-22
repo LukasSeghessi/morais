@@ -17,6 +17,7 @@ export default function Admin() {
   const [senha, setSenha] = useState("");
   const [telefone, setTelefone] = useState("");
   const [tipo, setTipo] = useState("user");
+  const [criandoUsuario, setCriandoUsuario] = useState(false);
 
   useEffect(() => {
     carregarUsuarios();
@@ -59,11 +60,26 @@ export default function Admin() {
   async function handleCriarUsuario(e) {
     e.preventDefault();
 
+    if (criandoUsuario) return;
+
     if (!nome || !email || !senha || !telefone) {
       alert("Preencha todos os campos.");
       return;
     }
 
+    setCriandoUsuario(true);
+
+    try {
+      await criarUsuario();
+    } catch (erro) {
+      console.error("Erro inesperado ao criar usuário:", erro);
+      alert("Ocorreu um erro inesperado ao criar o usuário.");
+    } finally {
+      setCriandoUsuario(false);
+    }
+  }
+
+  async function criarUsuario() {
     console.log("=================================");
     console.log("CRIANDO USUÁRIO");
     console.log("Nome:", nome);
@@ -495,8 +511,8 @@ export default function Admin() {
               </option>
             </select>
 
-            <button type="submit">
-              Criar
+            <button type="submit" disabled={criandoUsuario}>
+              {criandoUsuario ? "Criando..." : "Criar"}
             </button>
           </form>
         </section>

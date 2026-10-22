@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Home from "./pages/Home";
@@ -11,7 +11,6 @@ import Login from "./pages/Login";
 import Admin from "./pages/Admin";
 import AdminUpdate from "./pages/AdminUpdate";
 import AdminRoute from "./routes/AdminRoutes";
-import About from "./components/About";
 import AdminSolar from "./pages/AdminSolar";
 
 function AppContent() {
@@ -59,6 +58,18 @@ function AppContent() {
     </AdminRoute>
   }
 />
+
+        <Route
+          path="*"
+          element={
+            <main className="project-detail project-detail--not-found">
+              <h1>Página não encontrada</h1>
+              <Link to="/" className="project-detail__back-link">
+                Voltar ao início
+              </Link>
+            </main>
+          }
+        />
       </Routes>
 
       {!isAdminPage && !isLoginPage && <Footer />}

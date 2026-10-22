@@ -20,16 +20,16 @@ export default function Footer() {
 
         <div className="footer__column">
           <p className="footer__column-title">Navegação</p>
-          <a href="#sobre">Sobre</a>
-          <a href="#projetos">Projetos</a>
-          <a href="#orcamento">Faça um orçamento</a>
+          <a href="/#sobre">Sobre</a>
+          <a href="/projetos">Projetos</a>
+          <a href="/#orcamento">Faça um orçamento</a>
         </div>
 
         <div className="footer__column">
           <p className="footer__column-title">Contato</p>
-          <a href="tel:+5511999999999">(16) 99744-0950</a>
+          <a href="tel:+5516997440950">(16) 99744-0950</a>
           <a href="mailto:contato@moraisenergia.com.br">
-            email@email.com.br
+            contato@moraisenergia.com.br
           </a>
           <p className="footer__address">Jaboticabal - SP</p>
         </div>

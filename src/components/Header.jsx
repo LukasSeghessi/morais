@@ -84,7 +84,7 @@ export default function Header() {
 
         {/* MENU */}
         <nav className="header__nav">
-          <a href="#Hero">Sobre</a>
+          <a href="/#sobre">Sobre</a>
 
           <Link to="/projetos">
             Projetos
@@ -126,7 +126,7 @@ export default function Header() {
 
       {/* BOTÃO ORÇAMENTO */}
       <a
-        href="#orcamento"
+        href="/#orcamento"
         className="header__cta"
       >
         Faça um orçamento
