@@ -53,9 +53,6 @@ export default function Admin() {
     navigate("/login");
   }
 
-  // =========================================================
-  // CRIAR USUÁRIO
-  // =========================================================
 
   async function handleCriarUsuario(e) {
     e.preventDefault();
@@ -173,9 +170,6 @@ export default function Admin() {
     );
   }
 
-  // =========================================================
-  // EXCLUIR USUÁRIO
-  // =========================================================
 
   async function handleExcluirUsuario(id) {
     const usuario = usuarios.find(
@@ -277,7 +271,6 @@ export default function Admin() {
         return;
       }
 
-      // Remove o usuário da lista na tela
       setUsuarios((prev) =>
         prev.filter(
           (item) => item.id !== usuario.id
@@ -304,9 +297,6 @@ export default function Admin() {
 
   return (
     <div className="admin-page">
-      {/* =====================================================
-          SIDEBAR
-      ====================================================== */}
 
       <aside className="admin-sidebar">
         <div className="sidebar-top">
@@ -353,14 +343,8 @@ export default function Admin() {
         </button>
       </aside>
 
-      {/* =====================================================
-          CONTEÚDO
-      ====================================================== */}
 
       <main className="admin-content">
-        {/* ===================================================
-            USUÁRIOS
-        ==================================================== */}
 
         <section className="usuarios-section">
           <h1>Usuários</h1>
@@ -398,7 +382,6 @@ export default function Admin() {
                       </td>
 
                       <td className="acoes">
-                        {/* EDITAR */}
 
                         <button
                           className="acao-button editar"
@@ -412,7 +395,6 @@ export default function Admin() {
                           ✎
                         </button>
 
-                        {/* EXCLUIR */}
 
                         <button
                           className="acao-button excluir"
@@ -449,9 +431,6 @@ export default function Admin() {
           </div>
         </section>
 
-        {/* ===================================================
-            CADASTRAR USUÁRIO
-        ==================================================== */}
 
         <section className="cadastro-section">
           <h2>Cadastrar Usuário</h2>

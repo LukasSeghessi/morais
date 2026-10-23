@@ -1,9 +1,5 @@
 import "./Services.css";
 
-// TODO: trocar pelas imagens reais quando tiver os arquivos
-// import projetoImg from "../assets/servico-projeto.jpg";
-// import economiaImg from "../assets/servico-economia.jpg";
-// import instalacaoImg from "../assets/servico-instalacao.jpg";
 const projetoImg = "https://emsikwkemdavawyfzvdi.supabase.co/storage/v1/object/public/img/projeto.jpg";
 const economiaImg = "https://emsikwkemdavawyfzvdi.supabase.co/storage/v1/object/public/img/economia.jpg";
 const instalacaoImg = "https://emsikwkemdavawyfzvdi.supabase.co/storage/v1/object/public/img/instalacaoes_2.jpg";

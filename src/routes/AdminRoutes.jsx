@@ -9,7 +9,6 @@ export default function AdminRoute({ children }) {
   useEffect(() => {
     async function verificarAdmin() {
       try {
-        // Verifica se existe um usuário autenticado
         const {
           data: { user },
           error: userError,
@@ -20,7 +19,6 @@ export default function AdminRoute({ children }) {
           return;
         }
 
-        // Busca o usuário na nossa tabela
         const { data: usuario, error: usuarioError } = await supabase
           .from("usuarios")
           .select("tipo")
@@ -33,7 +31,6 @@ export default function AdminRoute({ children }) {
           return;
         }
 
-        // Verifica se o tipo é admin
         if (usuario?.tipo === "admin") {
           setIsAdmin(true);
         } else {
@@ -50,7 +47,6 @@ export default function AdminRoute({ children }) {
     verificarAdmin();
   }, []);
 
-  // Enquanto verifica o usuário
   if (carregando) {
     return (
       <main
@@ -66,11 +62,9 @@ export default function AdminRoute({ children }) {
     );
   }
 
-  // Se não for admin, volta para a página inicial
   if (!isAdmin) {
     return <Navigate to="/" replace />;
   }
 
-  // Se for admin, permite acessar a página
   return children;
 }

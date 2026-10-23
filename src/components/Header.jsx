@@ -36,12 +36,10 @@ export default function Header() {
   }
 
   useEffect(() => {
-    // Verifica se já existe um usuário logado
     supabase.auth.getUser().then(({ data: { user } }) => {
       carregarUsuario(user);
     });
 
-    // Monitora login e logout
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
@@ -59,7 +57,6 @@ export default function Header() {
     };
   }, []);
 
-  // Função para sair da conta
   const handleLogout = async () => {
     const { error } = await supabase.auth.signOut();
 
@@ -75,23 +72,20 @@ export default function Header() {
     <header className="header">
       <div className="header__left">
 
-        {/* LOGO */}
         <img
           src={logo}
           alt="Morais Energia"
           className="header__logo"
         />
 
-        {/* MENU */}
         <nav className="header__nav">
-          <a href="/#sobre">Sobre</a>
+          <Link to="/#sobre">Sobre</Link>
 
           <Link to="/projetos">
             Projetos
           </Link>
         </nav>
 
-        {/* USUÁRIO */}
         {usuario ? (
           <div className="header__user-area">
 
@@ -124,9 +118,8 @@ export default function Header() {
 
       </div>
 
-      {/* BOTÃO ORÇAMENTO */}
       <a
-        href="/#orcamento"
+        href="https://api.whatsapp.com/send/?phone=5516997440950&text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+energia+solar.&type=phone_number&app_absent=0"
         className="header__cta"
       >
         Faça um orçamento

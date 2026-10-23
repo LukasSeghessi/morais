@@ -217,9 +217,6 @@
     height: 200px;
   }
 }
-/* =========================================
-   CARD COM EFEITO 3D
-   ========================================= */
 
 .project-card-flip {
   position: relative;
@@ -245,8 +242,6 @@
   transition: transform 0.7s ease;
 }
 
-/* FRENTE */
-
 .project-card-front {
   transform: rotateY(0deg);
 }
@@ -257,8 +252,6 @@
   object-fit: cover;
   display: block;
 }
-
-/* VERSO */
 
 .project-card-back {
   background: #0b2e4f;
@@ -299,8 +292,6 @@
   font-size: 15px;
   font-weight: 600;
 }
-
-/* HOVER */
 
 .project-card-flip:hover .project-card-front {
   transform: rotateY(-180deg);

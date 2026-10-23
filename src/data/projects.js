@@ -1,6 +1,3 @@
-// TODO: essa lista vai vir do Supabase depois (tabela de projetos + fotos do Storage).
-// Por enquanto, dados de exemplo pra montar o layout.
-// Cada projeto tem um "id" -- e esse id que vai aparecer na URL, ex: /projetos/1
 
 export const PROJECTS = [
   {

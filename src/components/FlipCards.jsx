@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 import "./FlipCards.css";
 
-// Cada item tem: icone, titulo (aparece na frente) e descricao (aparece no verso).
 const CARDS = [
   {
     id: "energia-solar",

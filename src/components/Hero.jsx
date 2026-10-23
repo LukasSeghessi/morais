@@ -1,9 +1,6 @@
 import Header from "./Header";
 import "./Hero.css";
 
-// TODO: trocar pelas imagens reais quando tiver os arquivos
-// import heroImg from "../assets/hero-paineis.jpg";
-// import churchImg from "../assets/igreja-aerea.jpg";
 const heroVideo = "https://emsikwkemdavawyfzvdi.supabase.co/storage/v1/object/public/img/video_banner_2.mp4";
 const churchImg = "https://emsikwkemdavawyfzvdi.supabase.co/storage/v1/object/public/img/igreja.jpg";
 

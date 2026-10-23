@@ -9,23 +9,16 @@ const logo =
 export default function Login() {
   const navigate = useNavigate();
 
-  // Controla se estamos mostrando Login ou Cadastro
   const [modoCadastro, setModoCadastro] = useState(false);
 
-  // Login
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
-  // Cadastro
   const [nome, setNome] = useState("");
   const [telefone, setTelefone] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
 
   const [carregando, setCarregando] = useState(false);
-
-  // =========================
-  // LOGIN
-  // =========================
 
   async function handleLogin(event) {
     event.preventDefault();
@@ -33,7 +26,6 @@ export default function Login() {
     setCarregando(true);
 
     try {
-      // Autentica pelo Supabase Auth
       const { data: authData, error: authError } =
         await supabase.auth.signInWithPassword({
           email,
@@ -53,7 +45,6 @@ export default function Login() {
         return;
       }
 
-      // Busca os dados do usuário na tabela usuarios
       const { data: usuario, error: usuarioError } = await supabase
         .from("usuarios")
         .select("nome, email, telefone, tipo, auth_user_id")
@@ -64,14 +55,13 @@ export default function Login() {
         console.error("Erro ao buscar usuário:", usuarioError);
 
         alert(
-          "O login foi realizado, mas o cadastro do usuário não foi encontrado."
+          "O login foi realizado, mas o cadastro do usuário não foi encontrado.",
         );
 
         await supabase.auth.signOut();
         return;
       }
 
-      // Verifica o tipo do usuário
       if (usuario.tipo === "admin") {
         navigate("/admin");
       } else {
@@ -85,20 +75,14 @@ export default function Login() {
     }
   }
 
-  // =========================
-  // CADASTRO
-  // =========================
-
   async function handleCadastro(event) {
     event.preventDefault();
 
-    // Verifica se as senhas são iguais
     if (senha !== confirmarSenha) {
       alert("As senhas não são iguais.");
       return;
     }
 
-    // Verifica tamanho mínimo
     if (senha.length < 6) {
       alert("A senha precisa ter pelo menos 6 caracteres.");
       return;
@@ -107,14 +91,10 @@ export default function Login() {
     setCarregando(true);
 
     try {
-      // Cria o usuário no Supabase Auth
       const { data, error } = await supabase.auth.signUp({
         email,
         password: senha,
 
-        // Essas informações serão usadas
-        // pelo Trigger para criar o registro
-        // na tabela "usuarios".
         options: {
           data: {
             nome,
@@ -142,14 +122,12 @@ export default function Login() {
 
       alert("Conta criada com sucesso!");
 
-      // Limpa os campos
       setNome("");
       setEmail("");
       setTelefone("");
       setSenha("");
       setConfirmarSenha("");
 
-      // Volta para o modo login
       setModoCadastro(false);
     } catch (error) {
       console.error("Erro inesperado:", error);
@@ -159,17 +137,9 @@ export default function Login() {
     }
   }
 
-  // =========================
-  // VOLTAR PARA O INÍCIO
-  // =========================
-
   function voltarInicio() {
     navigate("/");
   }
-
-  // =========================
-  // TELA
-  // =========================
 
   return (
     <main className="login-page">
@@ -177,11 +147,7 @@ export default function Login() {
         className="login-page__card"
         onSubmit={modoCadastro ? handleCadastro : handleLogin}
       >
-        <img
-          src={logo}
-          alt="Morais Energia"
-          className="login-page__logo"
-        />
+        <img src={logo} alt="Morais Energia" className="login-page__logo" />
 
         <div className="login-page__fields">
           {modoCadastro && (
@@ -229,9 +195,7 @@ export default function Login() {
               type="password"
               placeholder="Confirmar senha"
               value={confirmarSenha}
-              onChange={(event) =>
-                setConfirmarSenha(event.target.value)
-              }
+              onChange={(event) => setConfirmarSenha(event.target.value)}
               className="login-page__input"
               required
             />
@@ -248,8 +212,8 @@ export default function Login() {
               ? "Criando conta..."
               : "Entrando..."
             : modoCadastro
-            ? "Criar conta"
-            : "Login"}
+              ? "Criar conta"
+              : "Login"}
         </button>
 
         <div className="login-page__switch">
@@ -280,7 +244,6 @@ export default function Login() {
           )}
         </div>
 
-        {/* VOLTAR PARA O INÍCIO */}
         <button
           type="button"
           className="login-page__back"

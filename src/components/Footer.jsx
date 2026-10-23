@@ -1,7 +1,6 @@
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
-// TODO: trocar pelo logo real quando tiver o arquivo
-// import logo from "../assets/logo-sol.svg";
 const logo = "https://emsikwkemdavawyfzvdi.supabase.co/storage/v1/object/public/img/logo_branco_2.png";
 
 const CURRENT_YEAR = new Date().getFullYear();
@@ -20,9 +19,12 @@ export default function Footer() {
 
         <div className="footer__column">
           <p className="footer__column-title">Navegação</p>
-          <a href="/#sobre">Sobre</a>
-          <a href="/projetos">Projetos</a>
-          <a href="/#orcamento">Faça um orçamento</a>
+          <Link to="/#sobre">Sobre</Link>
+          <Link to="/projetos">
+            Projetos
+          </Link>
+         
+          <a href="https://api.whatsapp.com/send/?phone=5516997440950&text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+energia+solar.&type=phone_number&app_absent=0">Faça um orçamento</a>
         </div>
 
         <div className="footer__column">

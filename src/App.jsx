@@ -19,6 +19,22 @@ function AppContent() {
   const isAdminPage = location.pathname.startsWith("/admin");
   const isLoginPage = location.pathname.startsWith("/login");
 
+  useEffect(() => {
+    if (!location.hash) return undefined;
+
+    const targetId = decodeURIComponent(location.hash.slice(1));
+    const frame = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.getElementById(targetId)?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      });
+    });
+
+    return () => cancelAnimationFrame(frame);
+  }, [location.hash, location.pathname]);
+
   return (
     <>
       <Routes>

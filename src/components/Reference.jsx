@@ -1,7 +1,5 @@
 import "./Reference.css";
 
-// TODO: trocar pela imagem real quando tiver o arquivo
-// import buildingImg from "../assets/predio-aereo.jpg";
 const buildingImg = "https://emsikwkemdavawyfzvdi.supabase.co/storage/v1/object/public/img/banco.jpg";
 
 export default function Reference() {

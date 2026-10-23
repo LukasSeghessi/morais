@@ -1,7 +1,5 @@
 import "./About.css";
 
-// TODO: trocar pelo logo real quando tiver o arquivo
-// import logo from "../assets/logo-morais-energia.svg";
 const logo = "https://emsikwkemdavawyfzvdi.supabase.co/storage/v1/object/public/img/logo.png";
 
 export default function About() {

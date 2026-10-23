@@ -1,13 +1,11 @@
 import "./FloatingButtons.css";
 
-// Dados da empresa
 const WHATSAPP_NUMBER = "5516997440950";
 const WHATSAPP_MESSAGE =
   "Olá! Gostaria de saber mais sobre energia solar.";
 
 
 
-// Links
 const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
   WHATSAPP_MESSAGE
 )}`;
@@ -18,7 +16,6 @@ export default function FloatingButtons() {
   return (
     <div className="floating-buttons">
 
-      {/* Instagram */}
       <a
         href={instagramUrl}
         target="_blank"
@@ -42,7 +39,6 @@ export default function FloatingButtons() {
 </svg>
       </a>
 
-      {/* WhatsApp */}
       <a
         href={whatsappUrl}
         target="_blank"

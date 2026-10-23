@@ -2,7 +2,6 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import "./ProjectsBanner.css";
 
-// TODO: trocar pela imagem real quando tiver o arquivo
 const roofImg = "https://emsikwkemdavawyfzvdi.supabase.co/storage/v1/object/public/img/placa_1.jpg";
 
 export default function ProjectsBanner() {

@@ -5,6 +5,12 @@
   
 }
 
+@media (max-width: 767px) {
+  .about__section {
+    scroll-margin-top: 160px;
+  }
+}
+
 @media (min-width: 768px) {
   .about__section {
     padding: var(--section-padding-y) 48px;

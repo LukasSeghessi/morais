@@ -39,8 +39,6 @@
     #285aeb 90%
   );
 }
-
-/* Em telas pequenas, deixa os botões um pouco menores e mais próximos da borda */
 @media (max-width: 480px) {
   .floating-buttons {
     bottom: 16px;

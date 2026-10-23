@@ -5,8 +5,6 @@ import { PROJECTS } from "../data/projects";
 import "./ProjectDetail.css";
 
 export default function ProjectDetail() {
-  // useParams le o valor que esta na URL. Se a rota e "/projetos/:id"
-  // e o usuario acessa "/projetos/2", entao id vai ser a string "2".
   const { id } = useParams();
   const [focusedPhoto, setFocusedPhoto] = useState(null);
 
@@ -28,8 +26,6 @@ export default function ProjectDetail() {
     };
   }, [focusedPhoto]);
 
-  // Se ninguem encontrar esse id (ex: usuario digitou uma URL errada),
-  // mostra uma mensagem simples em vez de quebrar a pagina.
   if (!project) {
     return (
       <main className="project-detail project-detail--not-found">

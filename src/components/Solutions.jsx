@@ -1,7 +1,5 @@
 import "./Solutions.css";
 
-// TODO: trocar pela imagem real quando tiver o arquivo
-// import roofImg from "../assets/telhado-residencial.jpg";
 const roofImg = "https://emsikwkemdavawyfzvdi.supabase.co/storage/v1/object/public/img/campo.jpg";
 
 export default function Solutions() {
