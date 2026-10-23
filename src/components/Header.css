@@ -4,14 +4,11 @@
   left: 0;
   right: 0;
   z-index: 20;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   gap: 12px;
   padding: 12px 16px;
-
   box-sizing: border-box;
 }
 
@@ -21,70 +18,42 @@
   }
 }
 
-/* =========================
-   ÁREA ESQUERDA (DIV AZUL)
-========================= */
-
 .header__left {
   display: flex;
   align-items: center;
-  gap: 24px;
-
+  gap: 30px;
   flex: 0 1 auto;
-
   width: auto;
   min-width: 0;
   height: 88px;
-
-  /* espaço entre o último item e a borda direita da div azul */
   padding-right: 24px;
-
   background-color: rgba(11, 46, 79, 0.8);
   border-radius: 26px;
-
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
-
   box-sizing: border-box;
 }
 
-/* =========================
-   LOGO
-========================= */
-
 .header__logo {
   flex-shrink: 0;
-
   width: 150px;
   height: 88px;
-
   margin: 0;
-
   object-fit: contain;
 }
-
-/* =========================
-   NAVEGAÇÃO
-========================= */
 
 .header__nav {
   display: flex;
   align-items: center;
-
   gap: 19px;
-
   margin: 0 20px 0 0;
-
   flex-shrink: 0;
 }
 
 .header__nav a {
   font-size: 15px;
   font-weight: 600;
-
   color: var(--color-white);
-
   white-space: nowrap;
-
   transition: color 0.2s ease;
 }
 
@@ -92,27 +61,14 @@
   color: var(--color-gold);
 }
 
-/* =========================
-   ÁREA DO USUÁRIO
-========================= */
-
 .header__left .header__user-area {
   display: flex;
   align-items: center;
   gap: 8px;
-
   margin-left: 0;
-
   min-width: 0;
   flex-shrink: 0;
 }
-
-/* =========================
-   USUÁRIO
-   (seletor mais específico para
-   vencer qualquer regra antiga
-   com position absolute / right)
-========================= */
 
 .header__left .header__user {
   position: static;
@@ -124,33 +80,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   width: 42px;
   height: 42px;
-
   margin: 0;
   padding: 0;
-
   border-radius: 999px;
-
   background-color: rgba(255, 255, 255, 0.15);
-
   color: var(--color-white);
-
   transform: none;
-
   flex-shrink: 0;
-
   box-sizing: border-box;
 }
 
-/* Quando estiver logado */
-
 .header__left .header__user--logged {
   width: auto;
-
   padding: 0 11px;
-
   gap: 7px;
 }
 
@@ -170,42 +114,27 @@
   line-height: 1;
 }
 
-/* =========================
-   BOTÃO SAIR
-========================= */
-
 .header__logout {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   height: 34px;
-
   margin: 0;
   padding: 0 14px;
-
   border: none;
   border-radius: 999px;
-
   background-color: rgba(255, 255, 255, 0.12);
-
   color: var(--color-white);
-
   font-family: inherit;
   font-size: 12px;
   font-weight: 600;
   line-height: 1;
-
   white-space: nowrap;
-
   cursor: pointer;
-
   transition:
     background-color 0.2s ease,
     color 0.2s ease;
-
   flex-shrink: 0;
-
   box-sizing: border-box;
 }
 
@@ -214,28 +143,16 @@
   color: var(--color-gold);
 }
 
-/* =========================
-   BOTÃO ORÇAMENTO
-========================= */
-
 .header__cta {
   flex-shrink: 0;
-
   border-radius: 10px;
-
   background-color: var(--color-gold);
-
   padding: 14px 28px;
-
   font-size: 15px;
   font-weight: 700;
-
   color: var(--color-navy);
-
   white-space: nowrap;
-
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-
   transition: background-color 0.2s ease;
 }
 
@@ -243,11 +160,25 @@
   background-color: var(--color-gold-hover);
 }
 
-/* =========================
-   TABLET
-========================= */
+@media (min-width: 1101px) {
+  .header__left {
+    display: flex;
+    gap: clamp(16px, 2vw, 24px);
+    height: 76px;
+    padding-right: 12px;
+  }
 
-@media (max-width: 1100px) and (min-width: 768px) {
+  .header__logo {
+    width: 120px;
+    height: 76px;
+  }
+
+  .header__nav {
+    margin: 0;
+  }
+}
+
+@media (max-width: 1100px) and (min-width: 781px) {
   .header {
     padding: 18px 24px;
   }
@@ -256,9 +187,14 @@
     width: 125px;
   }
 
+  .header__left {
+    gap: clamp(12px, 2vw, 20px);
+    padding-right: 12px;
+  }
+
   .header__nav {
     gap: 12px;
-    margin-right: 14px;
+    margin-right: 0;
   }
 
   .header__nav a {
@@ -279,11 +215,7 @@
   }
 }
 
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 767px) {
+@media (max-width: 780px) {
   .header {
     align-items: center;
 
@@ -301,47 +233,42 @@
   .header__left {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
     height: 76px;
     width: 100%;
     flex: 1 1 auto;
 
-    gap: 0;
-    padding: 0 12px;
+    column-gap: clamp(8px, 3vw, 14px);
+    padding: 0 clamp(8px, 3vw, 12px);
 
     border-radius: 20px;
   }
 
   .header__logo {
     position: static;
-
-    flex-shrink: 0;
-
-    width: min(100%, clamp(82px, 30vw, 124px));
+    flex: 0 1 clamp(48px, 22vw, 90px);
+    width: clamp(48px, 22vw, 90px);
+    min-width: 0;
     height: 68px;
-
     margin: 0;
     justify-self: center;
-
     object-fit: contain;
   }
 
   .header__nav {
     display: flex;
     align-items: center;
+    justify-content: center;
     justify-self: center;
-
-    gap: clamp(10px, 3vw, 16px);
-
+    gap: clamp(6px, 2.5vw, 12px);
     margin: 0;
-
     flex: 0 1 auto;
     min-width: 0;
   }
 
   .header__nav a {
-    font-size: 14px;
+    font-size: clamp(12px, 3.5vw, 14px);
     line-height: 1.2;
-
     white-space: nowrap;
   }
 
@@ -350,25 +277,21 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    justify-self: center;
-
     gap: 6px;
-
     margin-left: 0;
+    flex: 0 0 auto;
+    justify-self: center;
   }
 
   .header__left .header__user {
-    width: 42px;
-    height: 42px;
+    width: clamp(32px, 9vw, 38px);
+    height: clamp(32px, 9vw, 38px);
     border-radius: 999px;
     background-color: rgba(255, 255, 255, 0.15);
   }
 
-  .header__left > .header__user {
-    justify-self: center;
-  }
-
   .header__left a.header__user {
+    justify-self: center;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -377,11 +300,9 @@
 
   .header__left .header__user--logged {
     width: auto;
-    height: 26px;
-
-    padding: 0 10px;
-
-    gap: 5px;
+    height: clamp(24px, 7vw, 30px);
+    padding: 0 clamp(6px, 2vw, 9px);
+    gap: 4px;
   }
 
   .header__left .header__user--logged svg {
@@ -390,21 +311,73 @@
   }
 
   .header__left .header__user--logged span {
-    display: none;
+    display: block;
+    width: clamp(38px, 12vw, 52px);
+    max-width: clamp(38px, 12vw, 52px);
+    font-size: 11px;
   }
 
   .header__logout {
     display: inline-flex;
-
     height: 24px;
-
     padding: 0 10px;
-
     border: 1px solid rgba(255, 255, 255, 0.35);
-
     background-color: transparent;
+    font-size: 11px;
+  }
+}
 
-    font-size: 10px;
+@media (max-width: 460px) {
+  .header__nav {
+    gap: 8px;
+    transform: translateX(clamp(-20px, -5vw, -14px));
   }
 
+  .header__logo {
+    flex: 0 1 clamp(68px, 24vw, 92px);
+    width: clamp(68px, 24vw, 92px);
+  }
+
+  .header__nav a {
+    font-size: 14px;
+  }
+
+  .header__left .header__user-area {
+    gap: 4px;
+  }
+
+  .header__logo {
+    transform: scale(1.6);
+  }
+
+  .header__left .header__user {
+    width: 34px;
+    height: 34px;
+  }
+
+  .header__left .header__user--logged {
+    width: auto;
+  }
+
+  .header__left {
+    column-gap: clamp(8px, 3vw, 14px);
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
+  .header__left .header__user--logged {
+    height: 24px;
+  }
+
+  .header__logout {
+    height: 22px;
+    padding: 0 7px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 380px) {
+  .header__left .header__user--logged span {
+    display: none;
+  }
 }
