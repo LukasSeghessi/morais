@@ -39,7 +39,7 @@
 }
 
 .admin-logo img {
-  width: 1620px;
+  width: 162px;
   height: auto;
   object-fit: contain;
   display: block;
@@ -422,13 +422,13 @@
   }
 
   .admin-logo {
-    width: 70px;
+    width: 100px;
     height: 70px;
   }
 
   .admin-logo img {
-    width: 240px;
-    max-width: none;
+    width: 100px;
+    max-width: 100%;
     flex-shrink: 0;
   }
 
