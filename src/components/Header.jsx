@@ -84,7 +84,7 @@ export default function Header() {
 
         {/* MENU */}
         <nav className="header__nav">
-          <a href="#Hero">Sobre</a>
+          <a href="#sobre">Sobre</a>
 
           <Link to="/projetos">
             Projetos
