@@ -1,4 +1,5 @@
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
 // TODO: trocar pelo logo real quando tiver o arquivo
 // import logo from "../assets/logo-sol.svg";
@@ -21,7 +22,7 @@ export default function Footer() {
         <div className="footer__column">
           <p className="footer__column-title">Navegação</p>
           <a href="#sobre">Sobre</a>
-          <a href="projetos">Projetos</a>
+          <Link to="/projetos">Projetos</Link>
           <a href="https://api.whatsapp.com/send/?phone=5516997440950&text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+energia+solar.&type=phone_number&app_absent=0">Faça um orçamento</a>
         </div>
 
