@@ -126,7 +126,7 @@ export default function Header() {
 
       {/* BOTÃO ORÇAMENTO */}
       <a
-        href="#orcamento"
+        href="https://api.whatsapp.com/send/?phone=5516997440950&text=Ol%C3%A1%21+Gostaria+de+saber+mais+sobre+energia+solar.&type=phone_number&app_absent=0"
         className="header__cta"
       >
         Faça um orçamento
